@@ -1,0 +1,475 @@
+{
+	"info": {
+		"_postman_id": "32470ae8-90dc-4687-8bd6-f124b0448bb4",
+		"name": "C1-Express-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20035710"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\": \"c\",\r\n    \"email\": \"c@mail.com\",\r\n    \"user_id\": \"ccc\",\r\n    \"app_pin\": \"11111111\",\r\n    \"alamat_no\": 3,\r\n    \"alamat_lengkap\": \"jln.in dulu aja\",\r\n    \"alamat_rtrw\": \"rt.3 rw.3\",\r\n    \"dev_type\": \"ipon\",\r\n    \"dev_model\": \"x\",\r\n    \"dev_ver\": \"0.9\",\r\n    \"password\": \"123123123\",\r\n    \"confpassword\": \"123123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get users list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get users by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\": \"noms\",\r\n    \"email\": \"noms@mail.com\",\r\n    \"user_id\": \"naomi\",\r\n    \"app_pin\": \"124211\",\r\n    \"alamat_no\": 12,\r\n    \"alamat_lengkap\": \"jakarta\",\r\n    \"alamat_rtrw\": \"11/11\",\r\n    \"dev_type\": \"samsul\",\r\n    \"dev_model\": \"s12\",\r\n    \"dev_ver\": \"11\",\r\n    \"password\": \"123123123\",\r\n    \"confpassword\": \"123123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Card",
+			"item": [
+				{
+					"name": "Add card",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cardNumber\": \"178281\",\r\n    \"CVV\": \"334\",\r\n    \"cardName\": \"BRI\",\r\n    \"cardType\": \"Visa\",\r\n    \"Username\": \"as87hh\",\r\n    \"userID\": 2,\r\n    \"cardExpDate\": \"31-12-2025\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/card",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"card"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get card list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/card",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"card"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get card by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/card/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"card",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit card",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cardNumber\": \"837761529\",\r\n    \"CVV\": \"661\",\r\n    \"cardName\": \"BCA\",\r\n    \"cardType\": \"Master\",\r\n    \"Username\": \"721666\",\r\n    \"cardExpDate\": \"31-12-2027\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/card/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"card",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete card",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/card/4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"card",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "History",
+			"item": [
+				{
+					"name": "Add history",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userID\": 1,\r\n    \"cardID\": 2,\r\n    \"Merchant\": \"Shopee\",\r\n    \"Success\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/history",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get history list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/history",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get history by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/history/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"history",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit history",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userID\": 1,\r\n    \"cardID\": 2,\r\n    \"Merchant\": \"Tokopedia\",\r\n    \"Success\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/history/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"history",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete history",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/history/4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"history",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\": \"noms\",\r\n    \"email\": \"noms@mail.com\",\r\n    \"user_id\": \"naomi\",\r\n    \"app_pin\": \"124211\",\r\n    \"alamat_no\": 12,\r\n    \"alamat_lengkap\": \"jakarta\",\r\n    \"alamat_rtrw\": \"11/11\",\r\n    \"dev_type\": \"samsul\",\r\n    \"dev_model\": \"s12\",\r\n    \"dev_ver\": \"11\",\r\n    \"password\": \"123123123\",\r\n    \"confpassword\": \"123123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/0/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"0",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"noms@mail.com\",\r\n    \"password\": \"123123123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/0/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"0",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/0/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"0",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Generate token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/0/token",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"0",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImVtYWlsIjoibm9tc0BtYWlsLmNvbSIsInVpZCI6Im5hb21pIiwicGluIjoiMTI0MjExIiwiaWF0IjoxNjU2NDIzODEzLCJleHAiOjE2NTY0Mjc0MTN9.07YIItrG93_6Mq70OkczI5Xk98XguxRI5JxAaEDYI_o",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "localhost:3000",
+			"type": "string"
+		}
+	]
+}
