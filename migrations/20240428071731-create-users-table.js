@@ -1,46 +1,57 @@
 'use strict';
 
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("card", {
+  async up (queryInterface, Sequelize) {
+    await queryInterface.createTable("users", {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      cardNumber: {
+      nama: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      CVV: {
+      nip: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      cardName: {
+      email: {
+        allowNull: false,
+        type: Sequelize.STRING,
+        unique: true
+      },
+      password: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      cardType: {
-        allowNull: false,
-        type: Sequelize.ENUM("Master", "Visa"),
-      },
-      Username: {
+      alamat: {
         allowNull: false,
         type: Sequelize.STRING,
       },
-      userID: {
+      no_tlp: {
         allowNull: false,
+        type: Sequelize.STRING,
+      },
+      levelID: {
         type: Sequelize.INTEGER,
         onDelete: "CASCADE",
         references: {
-          model: "users",
+          model: "t_level",
           key: "id"
         },
       },
-      cardExpDate: {
-        allowNull: false,
-        type: Sequelize.STRING,
+      departmentID: {
+        type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
+        references: {
+          model: "t_department",
+          key: "id"
+        },
+      },
+      refresh_token: {
+        type: Sequelize.TEXT,
       },
       createdAt: {
         allowNull: false,
@@ -53,7 +64,7 @@ module.exports = {
     });
   },
 
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("card");
-  },
+  async down (queryInterface, Sequelize) {
+    await queryInterface.dropTable("users");
+  }
 };

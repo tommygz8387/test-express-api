@@ -10,6 +10,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    nip: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        unique: true
+    },
     email: {
         allowNull: false,
         type: DataTypes.STRING,
@@ -19,38 +24,30 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
     },
-    alamat_no: {
+    alamat: {
         allowNull: false,
+        type: DataTypes.STRING,
+    },
+    no_tlp: {
+        allowNull: false,
+        type: DataTypes.STRING,
+    },
+    levelID: {
         type: DataTypes.INTEGER,
-    },
-    alamat_lengkap: {
-        allowNull: false,
-        type: DataTypes.STRING,
-    },
-    alamat_rtrw: {
-        allowNull: false,
-        type: DataTypes.STRING,
-    },
-    dev_type: {
-        allowNull: false,
-        type: DataTypes.STRING,
-    },
-    dev_model: {
-        allowNull: false,
-        type: DataTypes.STRING,
-    },
-    dev_ver: {
-        allowNull: false,
-        type: DataTypes.STRING,
-    },
-    user_id: {
-        allowNull: false,
-        type: DataTypes.STRING,
-    },
-    app_pin: {
-        allowNull: false,
-        type: DataTypes.STRING,
+        onDelete: "CASCADE",
+        references: {
+            model: "t_level",
+            key: "id"
         },
+    },
+    departmentID: {
+        type: DataTypes.INTEGER,
+        onDelete: "CASCADE",
+        references: {
+            model: "t_department",
+            key: "id"
+        },
+    },
     refresh_token: {
         type: DataTypes.TEXT,
     },
@@ -67,11 +64,19 @@ module.exports = (sequelize, DataTypes) => {
         });
     User.associate = function (models) {
         // associations can be defined here
-        User.hasMany(models.Card, {
-            as: "userToCard"
+        User.hasOne(models.Level, {
+            foreignKey: "id",
+            onDelete: "CASCADE",
         });
-        User.hasMany(models.History, {
-            as: "userToHistory"
+        User.belongsTo(models.Level, {
+            foreignKey: "levelID",
+            onDelete: "CASCADE",
+            as: "userToLevel"
+        });
+        User.belongsTo(models.Department, {
+            foreignKey: "departmentID",
+            onDelete: "CASCADE",
+            as: "userToDepartment"
         });
     };
     return User;

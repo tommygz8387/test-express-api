@@ -9,19 +9,19 @@ const { User } = require("../models");
 const v = new Validator();
 
 // Register Function
+// dalam kasus ini sebaiknya tidak menggunakan register
+// karna login menggunakan beberapa level akses
+
 const register =(req, res) => {
   try {
     const schema = {
       nama: "string",
+      nip: "string",
       email: "string",
-      user_id: "string",
-      app_pin: "string",
-      alamat_no: "number",
-      alamat_lengkap: "string",
-      alamat_rtrw: "string",
-      dev_type: "string",
-      dev_model: "string",
-      dev_ver: "string",
+      alamat: "string",
+      no_tlp: "string",
+      levelID: "number",
+      departmentID: "number",
       password: "string|min:8",
       confpassword: "string|min:8",
     };
@@ -33,15 +33,12 @@ const register =(req, res) => {
         if (validate.length) return res.status(400).json(validate);
         await User.create({
           nama: req.body.nama,
+          nip: req.body.nip,
           email: req.body.email,
-          user_id: req.body.user_id,
-          app_pin: req.body.app_pin,
-          alamat_no: req.body.alamat_no,
-          alamat_lengkap: req.body.alamat_lengkap,
-          alamat_rtrw: req.body.alamat_rtrw,
-          dev_type: req.body.dev_type,
-          dev_model: req.body.dev_model,
-          dev_ver: req.body.dev_ver,
+          alamat: req.body.alamat,
+          no_tlp: req.body.no_tlp,
+          levelID: req.body.levelID,
+          departmentID: req.body.departmentID,
           password: hash,
         });
 
@@ -85,7 +82,7 @@ const login = async (req, res) => {
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      maxAge: 24 * 60 * 60 * 100,
+      maxAge: 24 * 60 * 60 * 1000,
     });
     res.json({ accessToken });
   } catch (error) {

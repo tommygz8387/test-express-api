@@ -12,11 +12,13 @@ const findUsers = async (req, res) => {
         attributes: ["id", "nama", "email"],
         include: [
             {
-                association: "userToCard",
-                attributes: {
-                    exclude: ["createdAt", "updatedAt"],
-                },
+                association: "userToLevel",
+                attributes: ["id","levelName"]
             },
+            {
+                association: "userToDepartment",
+                attributes: ["id","departmentName"]
+            }
         ],
     });
 
@@ -30,11 +32,13 @@ const findUserById = async (req, res) => {
     let userById = await User.findByPk(id, {
         include: [
             {
-                association: "userToCard",
-                attributes: {
-                    exclude: ["userID", "createdAt", "updatedAt"],
-                },
+                association: "userToLevel",
+                attributes: ["id", "levelName"]
             },
+            {
+                association: "userToDepartment",
+                attributes: ["id", "departmentName"]
+            }
         ],
     });
 
@@ -43,18 +47,12 @@ const findUserById = async (req, res) => {
     return res.json({
         id: userById.id,
         nama: userById.nama,
+        nip: userById.nip,
         email: userById.email,
-        alamat: {
-            alamat: userById.alamat_lengkap,
-            nomor: userById.alamat_no,
-            Rt_Rw: userById.alamat_rtrw,
-        },
-        device: {
-            type: userById.dev_type,
-            model: userById.dev_model,
-            version: userById.dev_ver,
-        },
-        card: userById.userToCard,
+        alamat: userById.alamat,
+        no_tlp: userById.no_tlp,
+        level: userById.userToLevel.levelName,
+        department: userById.userToDepartment.departmentName,
     });
 };
 
@@ -62,15 +60,12 @@ const findUserById = async (req, res) => {
 const addUser = async (req, res) => {
     const schema = {
         nama: "string",
+        nip: "string",
         email: "string",
-        user_id: "string",
-        app_pin: "string",
-        alamat_no: "number",
-        alamat_lengkap: "string",
-        alamat_rtrw: "string",
-        dev_type: "string",
-        dev_model: "string",
-        dev_ver: "string",
+        alamat: "string",
+        no_tlp: "string",
+        levelID: "number",
+        departmentID: "number",
         password: "string|min:8",
         confpassword: "string|min:8",
     };
@@ -84,15 +79,12 @@ const addUser = async (req, res) => {
 
             await User.create({
                 nama: req.body.nama,
+                nip: req.body.nip,
                 email: req.body.email,
-                user_id: req.body.user_id,
-                app_pin: req.body.app_pin,
-                alamat_no: req.body.alamat_no,
-                alamat_lengkap: req.body.alamat_lengkap,
-                alamat_rtrw: req.body.alamat_rtrw,
-                dev_type: req.body.dev_type,
-                dev_model: req.body.dev_model,
-                dev_ver: req.body.dev_ver,
+                alamat: req.body.alamat,
+                no_tlp: req.body.no_tlp,
+                levelID: req.body.levelID,
+                departmentID: req.body.departmentID,
                 password: hash,
             });
 
@@ -112,16 +104,11 @@ const editUser = async (req, res) => {
     const schema = {
         nama: "string|optional",
         email: "string|optional",
-        user_id: "string|optional",
-        app_pin: "string|optional",
-        alamat_no: "number|optional",
-        alamat_lengkap: "string|optional",
-        alamat_rtrw: "string|optional",
-        dev_type: "string|optional",
-        dev_model: "string|optional",
-        dev_ver: "string|optional",
-        password: "string|min:8|optional",
-        confpassword: "string|min:8|optional",
+        nip: "string|optional",
+        alamat: "string|optional",
+        no_tlp: "string|optional",
+        levelID: "number|optional",
+        departmentID: "number|optional",
     };
 
     const validate = v.validate(req.body, schema);
@@ -129,7 +116,7 @@ const editUser = async (req, res) => {
     if (validate.length) return res.status(400).json(validate);
     update = await user.update(req.body);
 
-    res.json({ message: "Data Edited Successfuly" }, update);
+    res.json({ message: "Data Edited Successfuly",update });
 };
 
 // Delete User By Id
